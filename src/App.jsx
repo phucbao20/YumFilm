@@ -3,7 +3,9 @@ import Destination from "./component/Destination"
 function App() {
 
   return (
-    <Destination/>
+    <div>
+      Hello
+    </div>
   )
 }
 
