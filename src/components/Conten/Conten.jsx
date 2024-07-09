@@ -5,7 +5,7 @@ import { ngoidenkiquai } from '../../image'
 
 const Conten = () => {
     return (
-        <div className='Conten h-[51rem] w-full  bg-[#2b2b31]  flex'>
+        <div className='Conten h-[48rem] w-full bg-[#2b2b31] flex border-b-2 border-[#ff55a5]' >
             <div className='h-full w-[60%] mt-7 py-3'>
                 <div className='h-[7rem] w-full '>
                     <div className='h-[1.5rem] w-full text-center '>
@@ -43,7 +43,7 @@ const Conten = () => {
                     </div>
                 </div>
             </div>
-            <div className='h-full w-[40%] bg-[#2b2b31] py-3 pr-20 mt-10'>
+            <div className=' w-[40%]  py-3 pr-20 mt-10'>
                 <div className='h-[18rem] w-full flex'>
                     <div className='h-[17rem] w-1/3'>
                         <img className='h-[270px] w-[200px]' src={ngoidenkiquai} />
@@ -105,6 +105,7 @@ const Conten = () => {
                         <Button variant="warning">Tiếp tục</Button>{' '}
                     </div>
                 </div>
+                
             </div>
         </div>
     )

@@ -12,11 +12,11 @@ const Navbar = () => {
         <div className=' h-full w-3/4 flex justify-between'>
           <div className='NavBar_Link h-full w-4/5 flex justify-evenly items-center *:px-2 *:py-1 *:font-semibold *:text-slate-500'>
             <a href='/'>Trang chủ</a>
-            <Dropdown className='!bg-[#2b2b31]'>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown >
+              <Dropdown.Toggle variant="success" id="dropdown-basic" className='!bg-transparent !border-0'>
                 Danh sách phim
               </Dropdown.Toggle>
-              <Dropdown.Menu className='!*:text-[#2b2b31]'>
+              <Dropdown.Menu className='!bg-black'>
                 <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
