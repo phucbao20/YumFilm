@@ -21,4 +21,15 @@
         }
        
     }
+    &-emailbtn{
+        button{
+            color: white;
+            background-color: #ff55a5;
+            
+            &:hover{
+                color: white;
+                background-color: #ff55a5;
+            }
+        }
+    }
 }
