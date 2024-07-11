@@ -1,0 +1,65 @@
+.container-fluid {
+    background-color: rgb(225, 224, 224);
+
+    .card-nav {
+        background-color: white;
+        height: 120px;
+        box-shadow: 2px 3px 3px 1px gray;
+
+        .card-body {
+            p {
+                color: gray;
+                font-size: 18px;
+            }
+        }
+
+    }
+
+    .listFilm {
+        font-size: 22px;
+        line-height: 1.7;
+    }
+
+    .YumFilm-Dashboard {
+        .button-report {
+            line-height: 1.1;
+            background-color: aqua;
+            padding: 10px;
+            border-radius: 10%;
+
+            &-title {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .card-chart {
+        background-color: white;
+        height: 320px;
+        box-shadow: 2px 3px 3px 1px gray;
+
+        .card-body {
+            p {
+                color: gray;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .card-table {
+        background-color: white;
+        box-shadow: 2px 3px 3px 1px gray;
+
+        table {
+            tbody {
+                tr {
+                    img {
+                        width: 120px;
+                        height: 120px;
+                        // border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+}
