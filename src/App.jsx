@@ -1,13 +1,11 @@
-// import HeaderAdminDashboard from "./component/AdmidDashboard/HeaderAdmin/HeaderAdminDashboard"
-import Admindashboard from './component/AdmidDashboard/AdminDashboard11'
-// import Dashboard from "./component/AdmidDashboard/Dashboard"
+import AdminRoutes from "./routes/AdminRoutes"
 
 
 function App() {
 
   return (
     <div>
-      <Admindashboard/>
+      <AdminRoutes/>
     </div>
   )
 }

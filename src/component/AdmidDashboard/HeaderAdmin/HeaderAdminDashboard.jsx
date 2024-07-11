@@ -2,7 +2,7 @@ import React from 'react'
 import './HeaderAdminDashboard.scss'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { Routes, Route, Link } from 'react-router-dom'
-import AdminDashboard11 from '../AdminDashboard11'; 
+import AdminDashboard11 from '../AdminDashboard'; 
 
 // import AdminDashboard from './AdminDashboard'
 

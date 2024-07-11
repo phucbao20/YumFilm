@@ -10,7 +10,7 @@ import { IoTicketOutline } from "react-icons/io5";
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { AreaChart, Area } from 'recharts';
 
-function NavAdminDashboard() {
+function Dashboard() {
     const formatYAxis = (tickItem) => {
         // Định dạng giá trị trục y thành dạng triệu (M)
         return (tickItem / 1000000) + 'M';
@@ -96,9 +96,6 @@ function NavAdminDashboard() {
         }
     ]
     return (
-        <div>
-            <div className='container-fluid h-full flex '>
-                <MenuDashboard />
                 <div className='w-full p-2 '>
                     <div className='YumFilm-Dashboard flex *:flex *:items-center mb-4 justify-between'>
                         <div >
@@ -195,9 +192,9 @@ function NavAdminDashboard() {
                     <div className='flex *:me-4 *:mb-4'>
 
                         <div className='card-table h-full w-full'>
-                            <div className='p-3'>
+                            <div className='p-3 w-full'>
                                 <p>Top Film</p>
-                                <table className='table table-hover'>
+                                <table className='table table-hover w-full'>
                                     <thead className=''>
                                         <tr className='*:py-2 *:px-4 *:border-b *:border-gray-300 '>
                                             <th>No.</th>
@@ -240,14 +237,10 @@ function NavAdminDashboard() {
                         </div>
 
                     </div>
-                    <FooterAdminDashboard />
+                    {/* <FooterAdminDashboard /> */}
 
                 </div>
-
-            </div>
-
-        </div>
-    )
+)
 }
 
-export default NavAdminDashboard
+export default Dashboard
