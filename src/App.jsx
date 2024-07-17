@@ -6,11 +6,13 @@ import Payment from './components/Payment/Payment'
 import FoodOrder from './components/FoodOrder/FoodOrder'
 import Login from './components/Login/Login'
 import Signup from './components/SignUp/Signup'
+import FilmDetail from './components/FilmDetail/FilmDetail'
 const App = () => {
   return (
     <div className='min-h-screen overflow-hidden'>
       <Navbar />
-      <Signup/>
+      <FilmDetail/>
+      {/* <Signup/> */}
       {/* <Login/> */}
       {/* <Payment /> */}
       {/* <FoodOrder /> */}
