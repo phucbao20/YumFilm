@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 const FoodOrder = () => {
     return (
-        <div className='Conten h-[51rem] w-full  bg-[#2b2b31]  flex'>
+        <div className='Conten h-[51rem] w-full  bg-[#2b2b31] flex'>
             <div className='h-full w-[60%] mt-7 py-3'>
                 <div className='h-full w-full  px-10 '>
                     <div className='h-full w-full border-2 border-x-zinc-50 mt-[0.75rem] py-3 px-4 flex flex-col'>
