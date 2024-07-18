@@ -1,0 +1,30 @@
+.NavBar {
+    background-color: #2b2b31;
+    &_Link {
+        a {
+            text-decoration: none;
+            transition: all 0.2s ease-in;
+            color: white;
+
+            &:hover {
+                color: #ff55a5 !important;
+                background-color: rgb(0, 0, 0);
+                border-radius: 5px;
+            }
+        }
+
+    }
+
+    &-btn {
+        a {
+            color: white;
+            text-decoration: none;
+            background-color: black;
+            &:hover{
+                color: #ff55a5 !important;
+            }
+        }
+        
+
+    }
+}

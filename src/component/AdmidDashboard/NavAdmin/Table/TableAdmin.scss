@@ -1,0 +1,38 @@
+.container-fluid {
+    background-color: rgb(225, 224, 224);
+    .card-chart {
+        background-color: white;
+        height: 320px;
+        box-shadow: 2px 3px 3px 1px gray;
+
+        .card-body {
+            p {
+                color: gray;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .card-table {
+        background-color: white;
+        box-shadow: 2px 3px 3px 1px gray;
+        table {
+            thead {
+                tr {
+                    font-size: 15px;
+                }
+            }
+        }
+        // table {
+        //     tbody {
+        //         tr {
+        //             img {
+        //                 width: 120px;
+        //                 height: 120px;
+        //                 // border-radius: 50%;
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}
