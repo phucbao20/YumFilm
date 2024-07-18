@@ -20,7 +20,11 @@
             color: white;
             text-decoration: none;
             background-color: black;
+            &:hover{
+                color: #ff55a5 !important;
+            }
         }
+        
 
     }
 }

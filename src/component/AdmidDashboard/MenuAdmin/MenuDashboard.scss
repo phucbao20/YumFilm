@@ -1,0 +1,23 @@
+.sidebar {
+    ul {
+        li {
+            line-height: 2.5;
+            a {
+                display: block;
+                text-decoration: none;
+                color: #787878;
+                // color: #fff200;
+                
+                // Sử dụng display : block thì không dùng span ở trong
+                // span {
+                    &:hover {
+                        background-color: #ededed;
+                        border-radius: 10px;
+                    }
+                // }
+            }
+
+        }
+    }
+
+}

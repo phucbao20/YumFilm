@@ -19,8 +19,8 @@ const Footer = () => {
           <div className='h-full w-2/4 flex justify-end px-[1rem]'>
             <input type="text" placeholder="Email" className="input w-full max-w-xs rounded-full text-[white]" />
           </div>
-          <div className='h-full w-1/3 flex justify-start'>
-            <button className="btn btn-outline btn-secondary font-semibold rounded-full">Secondary</button>
+          <div className='Footer-emailbtn h-full w-1/3 flex justify-start'>
+            <button className="btn font-semibold !rounded-full ">Secondary</button>
           </div>
         </div>
         <div className='Footer-about h-[1.75rem] w-full flex justify-center *:!text-[white]'>
