@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
 import { ngoidenkiquai } from '../../image'
@@ -80,46 +81,5 @@ const FilmDetail = () => {
 
 
                 }
-
-            </Container>
-            <Container-fluid>
-                <section className="border-t-4 border-t-red-600 mb-3">
-                    <Container className='mt-3'>
-                        <h3>Bình luận</h3>
-                        <div>
-                            <label htmlFor="OrderNotes" className="sr-only">Order notes</label>
-
-                            <div className="overflow-hidden">
-                                <textarea
-                                    id="OrderNotes"
-                                    className="w-full px-3 py-3 resize-none border-4 border-x-0 border-t-0 border-gray-200 align-top sm:text-sm"
-                                    rows="5"
-                                    placeholder="Viết bình luận"
-                                ></textarea>
-
-                                <div className="flex items-center justify-end gap-2 py-3">
-                                    <button
-                                        type="button"
-                                        className="rounded bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-gray-600"
-                                    >
-                                        Xóa
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700"
-                                    >
-                                        Đăng
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </Container>
-                </section>
-
-            </Container-fluid>
-        </section>
-    )
-}
 
 export default FilmDetail
