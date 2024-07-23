@@ -13,8 +13,8 @@ const UserRouter = () => {
             <Route path='/' element={<Home />}></Route>
             <Route path="/Login" element={<Login />}></Route>
             <Route path="/Signup" element={<Signup />}></Route>
-            <Route path="/Conten" element={<Conten />}></Route>
-            <Route path="/FoodOrder" element={<FoodOrder />}></Route>
+            <Route path="/Conten/:filmId" element={<Conten />}></Route>
+            <Route path="/FoodOrder/:filmId" element={<FoodOrder />}></Route>
             <Route path="/FilmDetail" element={<FilmDetail />}></Route>
         </Routes>
     </div>

@@ -8,13 +8,14 @@ import FoodOrder from './components/FoodOrder/FoodOrder'
 import Login from './components/Login/Login'
 import Signup from './components/SignUp/Signup'
 import FilmDetail from './components/FilmDetail/FilmDetail'
+import UserRouter from './routes/UserRouter'
 const App = () => {
   return (
 
     <div className='min-h-screen overflow-hidden'>
       <Navbar />
-
-      <Conten />
+      <UserRouter />
+      {/* <Conten /> */}
       {/* <FoodOrder /> */}
       <Footer />
 

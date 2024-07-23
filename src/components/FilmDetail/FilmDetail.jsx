@@ -1,22 +1,24 @@
 
 import React, { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
-import { ngoidenkiquai } from '../../image'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getFilmDetailById } from '../../service/FilmDetail'
 const FilmDetail = () => {
 
     const [filmDetail, setFilmDetail] = useState([])
-
+    const navigate = useNavigate();
     useEffect(() => {
         getFilmDetailById(1)
             .then((re) => {
                 setFilmDetail(re.data)
-                console.log(re.data)
             }).catch((err) => {
                 console.error(err)
             })
     }, [])
+    
+    const handleByTicked = (id) => {
+        navigate("/Conten/" + id)
+    }
     return (
         <section>
             <Container className='my-3'>
@@ -71,15 +73,16 @@ const FilmDetail = () => {
                                 <div>
                                     <small id="helpId" class="text-muted">Dat ve ngay:</small>
                                     <div className="mb-3 flex flex-wrap gap-2">
-                                        <Button><Link to="/Conten" className='no-underline text-[#000]'>Dat ve</Link></Button>
+                                        <Button><a className='no-underline text-[#000]' onClick={() => {handleByTicked(filmDetail[0])}}>Dat ve</a></Button>
                                     </div>
                                 </div>
                             </section>
                         </div>
                     )
-
-
-
                 }
+            </Container>
+        </section>
+    )
+}
 
 export default FilmDetail

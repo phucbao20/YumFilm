@@ -1,9 +1,55 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Conten.scss"
 import Button from 'react-bootstrap/Button';
 import { ngoidenkiquai } from '../../image'
-
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { getListSeat, getFilmById } from '../../service/SeatLocation'
 const Conten = () => {
+
+    const [listSeat, setListSeat] = useState([])
+    const [listOrder, setListOrder] = useState({
+        listOrderSeat:[],
+        listOrderFood:[],
+        listprice:[]
+    })
+        
+    const [film, setFilm] = useState([])
+    const { filmId } = useParams();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        getListSeat()
+            .then(seat => {
+                setListSeat(seat.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
+
+    useEffect(() => {
+        getFilmById(filmId).then((film) => {
+            setFilm(film.data)
+        })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
+    // const newOrder = [...newOrder, listOrder]
+
+    function handleByFood (id) {
+        navigate("/FoodOrder/" +id)
+    }
+
+
+    function handleClick(price, name) {
+            setListOrder({seatName: name, seatPrice: price})
+    }
+
+    console.log(listOrder);
     return (
         <div className='Conten h-[48rem] w-full bg-[#2b2b31] flex border-b-2 border-[#ff55a5]' >
             <div className='h-full w-[60%] mt-7 py-3'>
@@ -21,13 +67,19 @@ const Conten = () => {
                 <div className='h-[38rem] w-full '>
                     <div className='Conten-seatLocation flex px-10 py-7 justify-center'>
                         <ul className='Conten-seat'>
-                          {
-                            [...Array(77)].map((number, index) => 
-                            <li>
-                                <Button variant="outline-light" className='w-full'>A{index + 1}</Button>{' '}
-                            </li>
-                            )
-                          }
+                            {
+                                listSeat.map(seat =>
+                                    <li key={seat.seatLocationId}>
+                                        <Button
+                                            variant="outline-light"
+                                            className='w-full'
+                                            onClick={() => { handleClick(seat.seatPrice, seat.seatNumber) }}
+                                        >
+                                            {seat.seatNumber}
+                                        </Button>
+                                    </li>
+                                )
+                            }
                         </ul>
                     </div>
                     <div className='h-[7rem] w-full px-[4.5rem]'>
@@ -45,15 +97,21 @@ const Conten = () => {
             </div>
             <div className=' w-[40%]  py-3 pr-20 mt-10'>
                 <div className='h-[18rem] w-full flex'>
-                    <div className='h-[17rem] w-1/3'>
-                        <img className='h-[270px] w-[200px]' src={ngoidenkiquai} />
-                    </div>
-                    <div className='h-[17rem] w-2/3 px-3'>
-                        <div className='flex flex-col *:!text-[#ffff] '>
-                            <span className=' text-base font-bold'>Ngôi đền kì quái 4</span>
-                            <span className=' text-base font-normal'>2D Phụ Đề</span>
-                        </div>
-                    </div>
+                    {
+                        film.map(film =>
+                            <>
+                                <div className='h-[17rem] w-1/3'>
+                                    <img className='h-[270px] w-[200px]' src={`/src/image/${film.filmImage}`} />
+                                </div>
+                                <div className='h-[17rem] w-2/3 px-3'>
+                                    <div className='flex flex-col *:!text-[#ffff] '>
+                                        <span className=' text-base font-bold'>{film.filmName}</span>
+                                        <span className=' text-base font-normal'>2D Phụ Đề</span>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    }
                 </div>
                 <div className='h-[5rem] w-full'>
                     <div className='w-full h-[2rem] *:!text-[#ffff]'>
@@ -99,13 +157,13 @@ const Conten = () => {
                 </div>
                 <div className='h-[5rem] w-full  flex justify-center '>
                     <div className='Conten-btn h-full w-1/2 px-2'>
-                        <Button variant="light">Quay lại</Button>{' '}
+                        <Button variant="light"><Link to="/FilmDetail">Quay lại</Link></Button>{' '}
                     </div>
                     <div className='Conten-btn h-full w-1/2 px-2'>
-                        <Button variant="warning">Tiếp tục</Button>{' '}
+                        <Button variant="warning"><a onClick={() => {handleByFood(filmId)}}>Tiếp tục</a></Button>{' '}
                     </div>
                 </div>
-                
+
             </div>
         </div>
     )
