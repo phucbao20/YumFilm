@@ -1,0 +1,20 @@
+header{
+    // .Logo{
+    //     &-name{
+    //         // font-size: 20px;
+    //         text-decoration: none;
+    //         color: white;
+    //         font-weight: bold;
+    //     }
+    // }
+    .avatar{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .container{
+        #dropdown-custom-components::after{
+            display: none !important;
+        }
+    }
+}
