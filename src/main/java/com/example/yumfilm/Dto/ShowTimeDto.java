@@ -1,17 +1,15 @@
-package com.example.yumfilm.responses;
+package com.example.yumfilm.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ShowTimeResponses {
+public class ShowTimeDto {
     int showTimeId;
     int showTimeListId;
     String showTimeFrame;
