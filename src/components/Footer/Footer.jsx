@@ -2,8 +2,8 @@ import React from 'react'
 import "./Footer.scss"
 const Footer = () => {
   return (
-    <div className='Footer h-[23rem] w-full flex justify-center'>
-      <div className='h-full w-full '>
+    <div className='Footer h-[23rem] w-full flex justify-center py-14'>
+      <div className='h-full w-full border-t-2 border-[#ff55a5]' >
         <div className=' flex h-[6.5rem] w-full justify-center items-center mt-10'>
           <div className='Footer-logo h-full w-1/2 flex justify-end' >
             <img className='h-[5rem] w-[7rem] border-r-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuQjDuRopnonYQ8arRpuS6JfND4BaWIesn_r2LnHhVFt27zDbH-d4y7bm3k70w82o1Zes&usqp=CAU" />

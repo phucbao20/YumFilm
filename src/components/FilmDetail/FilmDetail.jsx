@@ -27,7 +27,7 @@ const FilmDetail = () => {
                         <div key={filmDetail[0]}>
                             <div>
                                 <div >
-
+                                    <h3>{filmDetail[1]}</h3>
                                 </div>
                             </div>
                             <section className='row'>
@@ -40,27 +40,27 @@ const FilmDetail = () => {
                                     <ul class="list-none">
                                         <li>
                                             <span className='me-3'>Thể loại: {filmDetail[4]}</span>
-                                            <a>a</a>
+                                            
                                         </li>
                                         <li>
                                             <span className='me-3'>Năm sản xuất: {filmDetail[3]}</span>
-                                            <a>b</a>
+                                            
                                         </li>
                                         <li>
                                             <span className='me-3'>Thời lượng phim: {filmDetail[6]}</span>
-                                            <a>c</a>
+                                            
                                         </li>
                                         <li>
                                             <span className='me-3'>Đạo diễn: {filmDetail[8]}</span>
-                                            <a>d</a>
+                                            
                                         </li>
                                         <li>
                                             <span className='me-3'>Quốc gia: {filmDetail[10]}</span>
-                                            <a>e</a>
+                                            
                                         </li>
                                         <li>
                                             <span className='me-3'>Diễn viên: {filmDetail[9]}</span>
-                                            <a>f</a>
+                                            
                                         </li>
                                         <li>
                                             <div className='flex'>
