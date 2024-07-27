@@ -15,7 +15,7 @@ const UserRouter = () => {
             <Route path="/Signup" element={<Signup />}></Route>
             <Route path="/Conten/:filmId" element={<Conten />}></Route>
             <Route path="/FoodOrder/:filmId" element={<FoodOrder />}></Route>
-            <Route path="/FilmDetail" element={<FilmDetail />}></Route>
+            <Route path="/FilmDetail/:filmId" element={<FilmDetail />}></Route>
         </Routes>
     </div>
   )

@@ -1,14 +1,15 @@
 
 import React, { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate,useParams } from 'react-router-dom'
 import { getFilmDetailById } from '../../service/FilmDetail'
 const FilmDetail = () => {
 
     const [filmDetail, setFilmDetail] = useState([])
     const navigate = useNavigate();
+    const { filmId } = useParams();
     useEffect(() => {
-        getFilmDetailById(1)
+        getFilmDetailById(filmId)
             .then((re) => {
                 setFilmDetail(re.data)
             }).catch((err) => {
@@ -33,7 +34,7 @@ const FilmDetail = () => {
                             <section className='row'>
                                 <article className='col-4 bg-slate-500'>
                                     <div className='w-full'>
-                                        <img src={`./images/${filmDetail[2]}`}></img>
+                                        <img src={`/src/image/${filmDetail[2]}`} className='w-80 h-82'></img>
                                     </div>
                                 </article>
                                 <aside className='col-8 bg-red-400'>

@@ -1,24 +1,58 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import "./Home.scss"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
+import { getListFilmHot,getListAllFilm } from '../../service/Film';
 
-const images = [
-    "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
-    "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
-    "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
-    "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
-    "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
-    "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
-    "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
-    "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
 
-]
+// const images = [
+//     "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
+//     "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
+//     "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
+//     "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
+//     "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
+//     "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
+//     "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
+//     "https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png",
+
+// ]
+
+
+
+
+
 
 const Home = () => {
+
+    const [listFilmHot, setFilmHot] = useState([]);
+    const [listAllFilm, setListAllFilm] = useState([]);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        getListFilmHot()
+        .then((filmHot)=> {
+            setFilmHot(filmHot.data)
+        })
+        .catch((error) => {
+            console.log(erro);
+        })
+        getListAllFilm()
+        .then((allFilm) =>{
+            setListAllFilm(allFilm.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    },[])
+    
+    function handleChooseFilm(id) {
+        navigate("/FilmDetail/" + id)
+    }
+   
     return (
         <body className='w-full h-full bg-slate-800'>
             <section className='ListFilmMonth container py-3'>
@@ -40,9 +74,9 @@ const Home = () => {
                     className="mySwiper"
                 >
                         {
-                            images.map((img) =>
+                            listFilmHot.map((img) =>
                                 <SwiperSlide>
-                                    <img src={img} className='rounded' alt="" />
+                                    <img src={`/src/image/${img[1]}`} className='rounded' alt="" />
                                 </SwiperSlide>
                             )
                         }
@@ -56,33 +90,29 @@ const Home = () => {
                 </div>
                 <div className='Film-Content container flex flex-wrap justify-between py-3 w-full h-full gap-y-8'>
                     {
-                        [...Array(4)].map((number, index) =>
-                            <div className='Content-Left flex justify-end w-1/2 h-1/4 p-4'>
+                        listAllFilm.map((film) =>
+                            <div className='Content-Left flex justify-end w-1/2 h-1/4 p-4' key={film[0]}>
                                 <div className='Image-Left'>
-                                    <img className='Image-Film rounded' src="https://ss-images.saostar.vn/pc/1643160456366/saostar-8pvszill03kn4149.png" alt="" />
+                                    <img className='Image-Film rounded' src={`/src/image/${film[2]}`} alt="" />
                                 </div>
                                 <div className='ContentBody-Left mx-3 w-[400px]'>
                                     <div>
-                                        <h3 className='TitleFilm'>Our BeLove Summer</h3>
+                                        <h3 className='TitleFilm'>{film[1]}</h3>
                                         <div className='Icon flex *:mx-2 text-white'>
-                                            <p>9.9/10</p>
+                                            <p>{film[4]}/10</p>
                                             <p>HD</p>
-                                            <p>18+</p>
+                                            <p>{film[6]}+</p>
                                         </div>
                                         <div className='Genre py-2'>
-                                            <span className='GenreFilm text-white'>Tình cảm</span>
+                                            <span className='GenreFilm text-white'>{film[3]}</span>
                                         </div>
                                     </div>
                                     <div className='Mota py-2 pt-3 flex-1'>
                                         <div className='Description-Box w-full text-justify'>
-                                            Mùa hè yêu dấu của chúng ta là một bộ phim truyền hình hài lãng mạn của Hàn Quốc.
-                                            Được quảng bá là "phim gốc đầu tiên của Studio N", phim được đạo diễn bởi Kim Yoon-jin
-                                            và được viết kịch bản bởi Lee Na-eun, với sự tham gia của Choi Woo-shik, Kim Da-mi, Kim
-                                            Sung-cheol và Roh Jeong-eui và được viết kịch bản bởi Lee Na-eun, với sự tham gia của Choi Woo-shik, Kim Da-mi, Kim
-                                            Sung-cheol và Roh Jeong-eui
+                                           {film[5]}
                                         </div>
                                     </div>
-                                    <button className='Button btn  text-white w-[150px]'><Link to="/FilmDetail" className='no-underline text-[#000]'>Chọn phim</Link></button>
+                                    <button className='Button btn  text-white w-[150px]'><a className='no-underline text-[#000]' onClick={() => {handleChooseFilm(film[0])}}>Chọn phim</a></button>
                                 </div>
                             </div>
                         )
