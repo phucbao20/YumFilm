@@ -6,7 +6,13 @@ const Footer = () => {
       <div className='h-full w-full border-t-2 border-[#ff55a5]' >
         <div className=' flex h-[6.5rem] w-full justify-center items-center mt-10'>
           <div className='Footer-logo h-full w-1/2 flex justify-end' >
-            <img className='h-[5rem] w-[7rem] border-r-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuQjDuRopnonYQ8arRpuS6JfND4BaWIesn_r2LnHhVFt27zDbH-d4y7bm3k70w82o1Zes&usqp=CAU" />
+            {/* <img className='h-[5rem] w-[7rem] border-r-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuQjDuRopnonYQ8arRpuS6JfND4BaWIesn_r2LnHhVFt27zDbH-d4y7bm3k70w82o1Zes&usqp=CAU" /> */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="90">
+                                <g transform="translate(100, 100) rotate(-0.0663417)">
+                                    <text stroke="#000" fontWeight="bold" xmlSpace="preserve" textAnchor="middle" fontFamily="Noto Sans JP" fontSize="28" y="-45" x="-40" fill="#ffffff">Yum</text>
+                                    <text stroke="#000" fontWeight="bold" xmlSpace="preserve" textAnchor="middle" fontFamily="Noto Sans JP" fontSize="34" y="-43" x="22" fill="#ff0000">Film</text>
+                                </g>
+                            </svg>
           </div>
           <div className='Footer-title h-full w-1/2 flex justify-start mt-[3rem]'>
             <span className='text-[white]'>Xem là dui</span>

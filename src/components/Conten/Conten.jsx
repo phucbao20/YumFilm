@@ -11,6 +11,11 @@ const Conten = () => {
     const [listFood, setListFood] = useState([])
     const [listShowTime, setListShowTime] = useState([])
     const [toOrderFood, setToOrderFood] = useState(false)
+    const [orderFood, setOrderFood] = useState({
+        listOrderFood: [],
+        total: 0
+
+    })
 
     const [order, setOrder] = useState({
         listOrderSeat: [],
@@ -89,6 +94,41 @@ const Conten = () => {
     function handleShowTime(showTime) {
         setShowtime(showTime)
     }
+
+    const updateQuantity = (foodId, foodName, price, value) => {
+        // let inpQuantity =  document.getElementById(`quantity_${foodId}`)
+        // inpQuantity.value = inpQuantity.value*1 + value; 
+        
+        let newOrderFood = []
+        if (!orderFood.listOrderFood.find((food) => food.foodName === foodName)) {
+            newOrderFood = [
+                ...orderFood.listOrderFood, { foodName: foodName, price: price, value: value }
+            ]
+        }
+        else {
+            newOrderFood = [
+                ...orderFood.listOrderFood
+            ].map((listFood) => {
+                if (listFood.foodName === foodName) {
+                    return { ...listFood, value: listFood.value + value }
+                }
+                return { ...listFood }
+            })
+        }
+
+        newOrderFood = newOrderFood.filter((food) => food.value !== 0)
+
+        setOrderFood((prev) => {
+            return {
+                ...prev,
+                listOrderFood: newOrderFood,
+                total: newOrderFood.reduce((sum, food) => sum + food.price * food.value, 0)
+            }
+        }
+        )
+    }
+
+
 
     return (
         <div className='Conten h-[48rem] w-full bg-[#2b2b31] flex ' >
@@ -200,24 +240,26 @@ const Conten = () => {
                                         <div>
                                             <label for="Quantity" class="sr-only"> Quantity </label>
 
-                                            <div class="flex items-center gap-1">
+                                            <div class="flex items-center gap-1" key={food.foodId}>
                                                 <button
                                                     type="button"
                                                     class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+                                                    onClick={() => updateQuantity(food.foodId,food.foodName, food.price, -1)}
                                                 >
                                                     -
                                                 </button>
 
                                                 <input
                                                     type="number"
-                                                    id="Quantity"
-                                                    value="1"
+                                                    id={`quantity_${food.foodId}`}
+                                                    value={orderFood.listOrderFood.find((f) => f.foodName === food.foodName)?.value | 0}
                                                     class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                                                 />
 
                                                 <button
                                                     type="button"
                                                     class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+                                                    onClick={() => updateQuantity(food.foodId,food.foodName, food.price, +1)}
                                                 >
                                                     +
                                                 </button>
@@ -281,6 +323,28 @@ const Conten = () => {
                         <div className='border-b-2 border-[#ff55a5] h-[20px] w-full'></div>
                     </div>
                 }
+                {
+                    orderFood.listOrderFood.length &&
+                    <div className='h-[5rem] w-full mt-[2rem]'>
+                        <div className='h-full w-full  *:!text-[#ffff] flex'>
+                            <div className='h-full w-1/2 items-center'>
+                                <div className='h-[2.5rem] w-full flex flex-col'>
+                                    {
+                                        orderFood.listOrderFood.map((food) =>
+                                            <span>{food.value}x {food.foodName}</span>
+                                        )
+                                    }
+
+
+                                </div>
+                            </div>
+                            <div className='h-full w-1/2 justify-end flex items-center'>
+                                <span className='font-bold text-base text-amber-500'>{Math.ceil(orderFood.total).toLocaleString()} VNĐ</span>
+                            </div>
+                        </div>
+                        <div className='border-b-2 border-[#ff55a5] h-[20px] w-full'></div>
+                    </div>
+                }
                 <div className='h-[2.75rem] w-full mt-7'>
                     <div className='h-full w-full  *:!text-[#ffff] flex items-center mt-[35px]'>
                         <div className='h-full w-1/2'>
@@ -289,7 +353,7 @@ const Conten = () => {
                             </div>
                         </div>
                         <div className='h-full w-1/2 justify-end flex '>
-                            <span className='font-bold text-base text-amber-500'>{Math.ceil(order.totalMoney).toLocaleString()} VNĐ</span>
+                            <span className='font-bold text-base text-amber-500'>{Math.ceil(order.totalMoney + orderFood.total).toLocaleString()} VNĐ</span>
                         </div>
                     </div>
                 </div>
