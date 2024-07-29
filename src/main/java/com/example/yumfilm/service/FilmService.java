@@ -16,4 +16,12 @@ public class FilmService {
     public List<Film> findById(int integer) {
         return filmRepository.findFilmByFilmId(integer);
     }
+
+    public List<Object[]> findListFilmByMonth(){
+        return filmRepository.findFilmsHotInMonth();
+    }
+
+    public List<Object[]> getAllListFill(){
+        return filmRepository.listAllFilm();
+    }
 }

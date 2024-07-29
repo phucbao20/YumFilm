@@ -1,6 +1,5 @@
 package com.example.yumfilm.controller;
 
-import com.example.yumfilm.model.Film;
 import com.example.yumfilm.responses.FilmatOrderSeatResponses;
 import com.example.yumfilm.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +27,14 @@ public class FilmController {
        }).toList(); 
        return ResponseEntity.ok(filmResponses);
     };
+
+    @GetMapping("filmHot")
+    public ResponseEntity<List<Object[]>> findFilmHot(){
+        return ResponseEntity.ok(filmService.findListFilmByMonth());
+    }
+
+    @GetMapping("allFilm")
+    public ResponseEntity<List<Object[]>> findAllFilm(){
+        return ResponseEntity.ok(filmService.getAllListFill());
+    }
 }
