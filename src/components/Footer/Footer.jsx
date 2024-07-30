@@ -2,9 +2,9 @@ import React from 'react'
 import "./Footer.scss"
 const Footer = () => {
   return (
-    <div className='Footer h-[23rem] w-full flex justify-center py-14'>
-      <div className='h-full w-full border-t-2 border-[#ff55a5]' >
-        <div className=' flex h-[6.5rem] w-full justify-center items-center mt-10'>
+    <div className='Footer h-[23rem] w-full flex justify-center py-2 border-t-2 border-[#ff55a5]'>
+      <div className='h-full w-full' >
+        <div className=' flex h-[6.5rem] w-full justify-center items-center '>
           <div className='Footer-logo h-full w-1/2 flex justify-end' >
             {/* <img className='h-[5rem] w-[7rem] border-r-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuQjDuRopnonYQ8arRpuS6JfND4BaWIesn_r2LnHhVFt27zDbH-d4y7bm3k70w82o1Zes&usqp=CAU" /> */}
             <svg xmlns="http://www.w3.org/2000/svg" width="200" height="90">
@@ -14,7 +14,7 @@ const Footer = () => {
                                 </g>
                             </svg>
           </div>
-          <div className='Footer-title h-full w-1/2 flex justify-start mt-[3rem]'>
+          <div className='Footer-title h-full w-1/2 flex justify-start mt-16'>
             <span className='text-[white]'>Xem là dui</span>
           </div>
         </div>
@@ -26,7 +26,7 @@ const Footer = () => {
             <input type="text" placeholder="Email" className="input w-full max-w-xs rounded-full text-[white]" />
           </div>
           <div className='Footer-emailbtn h-full w-1/3 flex justify-start'>
-            <button className="btn font-semibold !rounded-full ">Secondary</button>
+            <button className="btn font-semibold !rounded-full">Send Email</button>
           </div>
         </div>
         <div className='Footer-about h-[1.75rem] w-full flex justify-center *:!text-[white]'>
