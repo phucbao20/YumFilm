@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/vi/filmDetail")
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("*")
 public class FilmDetailController {
     @Autowired
     FilmDetailService filmDetailService;

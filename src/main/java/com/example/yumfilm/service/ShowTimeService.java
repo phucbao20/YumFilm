@@ -1,5 +1,6 @@
 package com.example.yumfilm.service;
 
+import com.example.yumfilm.Dto.ShowTimeDto;
 import com.example.yumfilm.model.ShowTime;
 import com.example.yumfilm.repository.ShowTimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class ShowTimeService {
     @Autowired
     ShowTimeRepository showTimeRepository;
 
-    public List<Object[]> getFilmShowTime(int id){
+    public Object[] getFilmShowTime(int id){
         return showTimeRepository.findFilmShowTime(id);
     }
 
