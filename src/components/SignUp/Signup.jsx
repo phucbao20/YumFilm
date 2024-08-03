@@ -1,6 +1,7 @@
 import React
 // , { useState } 
 from 'react'
+import { Link } from 'react-router-dom'
 // import { createAccount } from '../service/RegisterService'
 // import Swal from 'sweetalert2'
 // import { useNavigate } from 'react-router'
@@ -172,7 +173,7 @@ const Signup = () => {
 
                         <p className="text-center text-sm text-gray-500">
                             Bạn đã có tài khoản ?
-                            <a className="underline" href="#">Đăng nhập</a>
+                            <Link to="/login">Đăng nhập</Link>
                         </p>
                     </form>
                 </div>

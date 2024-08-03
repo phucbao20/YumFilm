@@ -1,244 +1,76 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import "./FoodOrder.scss"
 import { ngoidenkiquai, FAfood, optimusFood, Pepsi, baprangbo } from '../../image'
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { getListFood } from '../../service/Food'
 const FoodOrder = () => {
+    const [listFood, setListFood] = useState([])
+    const { filmId } = useParams();
+    const navigate = useNavigate();
+    useEffect(() => {
+        getListFood()
+            .then((food) => {
+                setListFood(food.data)
+                console.log(food.data);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
+
+    function handleBackOrderSeat(id){
+        navigate("/Conten/" + id)
+    }
     return (
         <div className='Conten h-[51rem] w-full  bg-[#2b2b31] flex'>
+        
             <div className='h-full w-[60%] mt-7 py-3'>
                 <div className='h-full w-full  px-10 '>
                     <div className='h-full w-full border-2 border-x-zinc-50 mt-[0.75rem] py-3 px-4 flex flex-col'>
                         <label className='font-semibold text-[#fff] text-lg'>Chọn combo</label>
-                        <div className='h-1/6 w-full mt-3 flex'>
-                            <div className='h-full w-1/2  items-center flex'>
-                                <img className='h-[100px] w-[150px]' src={FAfood} />
-                                <div className='flex flex-col *:!ml-2 *:!text-[#fff]'>
-                                    <label>Combo FA</label>
-                                    <label>1 bắp, 1 nước</label>
-                                    <label className='font-bold '>100.000 VNĐ</label>
-                                </div>
-                            </div>
-                            <div className='h-full w-1/2 flex justify-end items-center'>
-                                <div>
-                                    <label for="Quantity" class="sr-only"> Quantity </label>
+                        {
+                            listFood.map((food) => 
+                                <div className='h-1/6 w-full mt-3 flex'>
+                                    <div className='h-full w-1/2  items-center flex'>
+                                        <img className='h-[100px] w-[150px]' src={`/src/image/${food.foodImage}`} />
+                                        <div className='flex flex-col *:!ml-2 *:!text-[#fff]'>
+                                            <label>{food.foodName}</label>
+                                            <label>{food.description}</label>
+                                            <label className='font-bold '>{food.price} VNĐ</label>
+                                        </div>
+                                    </div>
+                                    <div className='h-full w-1/2 flex justify-end items-center'>
+                                        <div>
+                                            <label for="Quantity" class="sr-only"> Quantity </label>
 
-                                    <div class="flex items-center gap-1">
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            -
-                                        </button>
+                                            <div class="flex items-center gap-1">
+                                                <button
+                                                    type="button"
+                                                    class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+                                                >
+                                                    -
+                                                </button>
 
-                                        <input
-                                            type="number"
-                                            id="Quantity"
-                                            value="1"
-                                            class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                        />
+                                                <input
+                                                    type="number"
+                                                    id="Quantity"
+                                                    value="1"
+                                                    class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                                                />
 
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            +
-                                        </button>
+                                                <button
+                                                    type="button"
+                                                    class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className='h-1/6 w-full mt-3 flex'>
-                            <div className='h-full w-1/2  items-center flex'>
-                                <img className='h-[100px] w-[150px]' src={FAfood} />
-                                <div className='flex flex-col *:!ml-2 *:!text-[#fff]'>
-                                    <label>Combo FA</label>
-                                    <label>1 bắp, 1 nước</label>
-                                    <label className='font-bold '>100.000 VNĐ</label>
-                                </div>
-                            </div>
-                            <div className='h-full w-1/2 flex justify-end items-center'>
-                            <div>
-                                    <label for="Quantity" class="sr-only"> Quantity </label>
-
-                                    <div class="flex items-center gap-1">
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            -
-                                        </button>
-
-                                        <input
-                                            type="number"
-                                            id="Quantity"
-                                            value="1"
-                                            class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                        />
-
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='h-1/6 w-full mt-3 flex'>
-                            <div className='h-full w-1/2  items-center flex'>
-                                <img className='h-[100px] w-[150px]' src={FAfood} />
-                                <div className='flex flex-col *:!ml-2 *:!text-[#fff]'>
-                                    <label>Combo FA</label>
-                                    <label>1 bắp, 1 nước</label>
-                                    <label className='font-bold '>100.000 VNĐ</label>
-                                </div>
-                            </div>
-                            <div className='h-full w-1/2 flex justify-end items-center'>
-                            <div>
-                                    <label for="Quantity" class="sr-only"> Quantity </label>
-
-                                    <div class="flex items-center gap-1">
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            -
-                                        </button>
-
-                                        <input
-                                            type="number"
-                                            id="Quantity"
-                                            value="1"
-                                            class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                        />
-
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='h-1/6 w-full mt-3 flex'>
-                            <div className='h-full w-1/2  items-center flex'>
-                                <img className='h-[100px] w-[150px]' src={FAfood} />
-                                <div className='flex flex-col *:!ml-2 *:!text-[#fff]'>
-                                    <label>Combo FA</label>
-                                    <label>1 bắp, 1 nước</label>
-                                    <label className='font-bold '>100.000 VNĐ</label>
-                                </div>
-                            </div>
-                            <div className='h-full w-1/2 flex justify-end items-center'>
-                            <div>
-                                    <label for="Quantity" class="sr-only"> Quantity </label>
-
-                                    <div class="flex items-center gap-1">
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            -
-                                        </button>
-
-                                        <input
-                                            type="number"
-                                            id="Quantity"
-                                            value="1"
-                                            class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                        />
-
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='h-1/6 w-full mt-3 flex'>
-                            <div className='h-full w-1/2  items-center flex'>
-                                <img className='h-[100px] w-[150px]' src={FAfood} />
-                                <div className='flex flex-col *:!ml-2 *:!text-[#fff]'>
-                                    <label>Combo FA</label>
-                                    <label>1 bắp, 1 nước</label>
-                                    <label className='font-bold '>100.000 VNĐ</label>
-                                </div>
-                            </div>
-                            <div className='h-full w-1/2 flex justify-end items-center'>
-                            <div>
-                                    <label for="Quantity" class="sr-only"> Quantity </label>
-
-                                    <div class="flex items-center gap-1">
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            -
-                                        </button>
-
-                                        <input
-                                            type="number"
-                                            id="Quantity"
-                                            value="1"
-                                            class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                        />
-
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='h-1/6 w-full mt-3 flex'>
-                            <div className='h-full w-1/2  items-center flex'>
-                                <img className='h-[100px] w-[150px]' src={FAfood} />
-                                <div className='flex flex-col *:!ml-2 *:!text-[#fff]'>
-                                    <label>Combo FA</label>
-                                    <label>1 bắp, 1 nước</label>
-                                    <label className='font-bold '>100.000 VNĐ</label>
-                                </div>
-                            </div>
-                            <div className='h-full w-1/2 flex justify-end items-center'>
-                            <div>
-                                    <label for="Quantity" class="sr-only"> Quantity </label>
-
-                                    <div class="flex items-center gap-1">
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            -
-                                        </button>
-
-                                        <input
-                                            type="number"
-                                            id="Quantity"
-                                            value="1"
-                                            class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                        />
-
-                                        <button
-                                            type="button"
-                                            class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        }
                     </div>
                 </div>
             </div>
@@ -312,7 +144,7 @@ const FoodOrder = () => {
                 </div>
                 <div className='h-[5rem] w-full  flex justify-center '>
                     <div className='Conten-btn h-full w-1/2 px-2'>
-                        <Button variant="light">Quay lại</Button>{' '}
+                        <Button variant="light"><a onClick={() => {handleBackOrderSeat(filmId)}}>Quay lại</a></Button>{' '}
                     </div>
                     <div className='Conten-btn h-full w-1/2 px-2'>
                         <Button variant="warning">Tiếp tục</Button>{' '}

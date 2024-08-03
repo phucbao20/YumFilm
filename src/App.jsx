@@ -1,16 +1,29 @@
 
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-// import Home from './component/Home/Home'
-// import FilmDetailAdmin from './component/FilmDetailAdmin/FilmDetailAdmin'
-import FilmDetail from './component/FilmDetail/FilmDetail'
-function App() {
+
+import React from 'react'
+import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
+import Conten from './components/Conten/Conten'
+import Payment from './components/Payment/Payment'
+import FoodOrder from './components/FoodOrder/FoodOrder'
+import Login from './components/Login/Login'
+import Signup from './components/SignUp/Signup'
+import FilmDetail from './components/FilmDetail/FilmDetail'
+import UserRouter from './routes/UserRouter'
+const App = () => {
   return (
-    <>
-        <FilmDetail/>
-    </>
+
+    <div className='min-h-screen overflow-hidden'>
+      <Navbar />
+      <UserRouter />
+      {/* <Conten /> */}
+      {/* <FoodOrder /> */}
+      <Footer />
+
+   
+
+    </div>
+
   )
 }
 
