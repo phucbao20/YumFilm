@@ -1,0 +1,40 @@
+body{
+    .Film{
+        &-Content{
+            .Content-Left{
+                .Image-Left{
+                    .Image-Film{
+                        width: 300px;
+                        height: 360px;
+                    }
+                }
+                .ContentBody-Left{
+                    .TitleFilm{
+                        color: white;
+                    }
+
+                    .Mota {
+                        padding: 0.5rem 0 0.75rem;
+                        flex: 1;
+                        .Description-Box {
+                            width: 100%;
+                            color: white;
+                            text-align: justify;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 7;
+                            overflow: hidden;
+                        }
+                    }
+                    
+                }
+                
+
+                .Button{
+                    background-color: rgba(235, 7, 98, 0.958);
+                }
+
+            }
+        }
+    }
+}
