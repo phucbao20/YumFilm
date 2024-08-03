@@ -31,9 +31,9 @@ function HeaderAdminDashboard() {
                                             <img className='avatar' src='https://toplist.vn/images/800px/son-ye-jin-482499.jpg'></img>
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item as={Link} to="/1">Profiles</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/profiles">Profiles</Dropdown.Item>
                                             <Dropdown.Divider />
-                                            <Dropdown.Item as={Link} to="/2">Logout</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/logout">Logout</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
 
@@ -43,10 +43,10 @@ function HeaderAdminDashboard() {
 
                     </div>
                 </div>
-                <Routes>
+                {/* <Routes>
                     <Route path='/home' element={< AdminDashboard11 />} ></Route>
                     <Route path='/1' element={< AdminDashboard11 />} ></Route>
-                </Routes>
+                </Routes> */}
             </header>
             
         </div>
