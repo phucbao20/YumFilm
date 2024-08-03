@@ -6,3 +6,6 @@ import baprangbo from "./baprangbo.jpg"
 import img_sign_up_in from "./img_sign_up_in.jpg"
 
 export { ngoidenkiquai,FAfood,optimusFood,Pepsi,baprangbo, img_sign_up_in }
+
+export { ngoidenkiquai,FAfood,optimusFood,Pepsi,baprangbo }
+
