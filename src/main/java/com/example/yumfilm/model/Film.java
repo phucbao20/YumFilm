@@ -1,5 +1,6 @@
 package com.example.yumfilm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -53,6 +54,7 @@ public class Film {
 
     @ManyToOne()
     @JoinColumn(name = "CountryId" , nullable = false)
+    @JsonIgnore
     Country country;
 
     @OneToMany(mappedBy= "film" , cascade = CascadeType.ALL)
