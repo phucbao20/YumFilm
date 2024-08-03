@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ShowTimeRepository extends JpaRepository<ShowTime, Integer> {
-    @Query(value = "select st.ShowTimeId,stl.ShowTimeListId, stl.ShowTimeFrame, st.FilmId from ShowTime st join ShowTimeList stl on st.ShowTimeListId = stl.ShowTimeListId where filmid = (:idFilm) and ShowTimeDate = '2024-05-20'" , nativeQuery = true)
+    @Query(value = "select st.ShowTimeId,stl.ShowTimeListId, stl.ShowTimeFrame, st.FilmId from ShowTime st join ShowTimeList stl on st.ShowTimeListId = stl.ShowTimeListId where filmid = (:idFilm)" , nativeQuery = true)
     Object[] findFilmShowTime(@Param("idFilm") int idFilm);
 }
