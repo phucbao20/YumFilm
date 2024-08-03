@@ -81,4 +81,6 @@ public interface FilmDetailRepository extends JpaRepository<Film, Integer> {
             "\t\t\t\tFilm.Price", nativeQuery = true)
     Object[] findFilmDetailById(@Param("filmId") int filmId);
 
+    @Query(value = "SELECT COUNT(f) FROM Film f WHERE f.status = true")
+    public long getCountFilm();
 }

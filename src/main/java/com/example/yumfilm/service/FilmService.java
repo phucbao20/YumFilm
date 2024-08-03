@@ -4,7 +4,6 @@ import com.example.yumfilm.model.Film;
 import com.example.yumfilm.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +22,9 @@ public class FilmService {
 
     public List<Object[]> getAllListFill(){
         return filmRepository.listAllFilm();
+        
+            public Film getFilmById(int filmId) {
+        return filmRepository.findByFilmId(filmId);
+
     }
 }

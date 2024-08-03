@@ -4,12 +4,23 @@ import com.example.yumfilm.model.Film;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Integer> {
+   @Query("SELECT f FROM Film f WHERE f.filmId = :filmId")
+    Film findByFilmId(@Param("filmId") int filmId);
+
+    @Query(value = "SELECT f.filmName, c.countryName, f.rate, f.status FROM Film f "
+            + " JOIN f.country c "
+            + " WHERE f.status = true "
+            + " ORDER BY f.rate DESC "
+            + " LIMIT 5 ")
+    List<Object[]> getFilmTable();
+  
     @Query(value = "Select f from Film f where f.filmId = :id")
     List<Film> findFilmByFilmId(@Param("id") int id);
 
@@ -33,4 +44,5 @@ public interface FilmRepository extends JpaRepository<Film, Integer> {
             "\t\t\t\tGROUP BY f.FilmName, f.Rate, f.FilmImage , fd.Description,f.FilmId, f.Age \n" +
             "\t\t\t\tORDER BY NEWID()\n", nativeQuery = true)
     List<Object[]> listAllFilm();
+
 }
