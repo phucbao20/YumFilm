@@ -16,7 +16,6 @@ const UserRouter = () => {
             <Route path="/Login" element={<Login />}></Route>
             <Route path="/Signup" element={<Signup />}></Route>
             <Route path="/Conten/:filmId" element={<Conten />}></Route>
-            {/* <Route path="/FoodOrder/:filmId" element={<FoodOrder />}></Route> */}
             <Route path="/FilmDetail/:filmId" element={<FilmDetail />}></Route>
             <Route path="/Conten/payment/:filmId" element={<Payment/>}></Route>
             <Route path="/Conten/booking/payment-status" element={<PaymentStatus/>}></Route>

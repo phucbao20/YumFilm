@@ -5,6 +5,18 @@
             width: 400px;
             border-radius: 20px;
         }
+        .Content-Input{
+            background-color: rgba(235, 7, 98, 0.958);
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            padding-top: 10px; 
+            border-radius: 10px;
+            .Input-File{
+                
+            }
+        }
+        
         .Button-Content{
             color: white;
             width: 150px;
