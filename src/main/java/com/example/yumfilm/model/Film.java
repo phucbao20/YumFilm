@@ -20,8 +20,8 @@ public class Film {
     @Id
     @Column(name = "FilmId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     int filmId;
+
     @Column(name = "FilmName" , columnDefinition ="nvarchar(255)", nullable = false)
     String filmName;
 

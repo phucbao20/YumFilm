@@ -1,5 +1,6 @@
 package com.example.yumfilm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -24,5 +25,6 @@ public class Country {
     boolean status;
 
     @OneToMany(mappedBy = "country")
+    @JsonIgnore
     List<Film> listFilms;
 }

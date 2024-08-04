@@ -33,12 +33,12 @@ public class FilmDetail {
     @JoinColumn(name = "FilmId" , nullable =false)
     Film film;
 
-    @OneToMany(mappedBy = "filmDetail")
+    @OneToMany(mappedBy = "filmDetail", cascade = CascadeType.ALL)
     List<ActorOfFilm> listActorOfFilm;
 
-    @OneToMany(mappedBy = "filmDetail")
+    @OneToMany(mappedBy = "filmDetail", cascade = CascadeType.ALL)
     List<ProducerOfFilm> listProducerOfFilm;
 
-    @OneToMany(mappedBy = "filmDetail")
+    @OneToMany(mappedBy = "filmDetail", cascade = CascadeType.ALL)
     List<DirectorOfFilm> listDirectorOfFilm;
 }

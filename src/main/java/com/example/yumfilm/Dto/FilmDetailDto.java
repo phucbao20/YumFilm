@@ -1,5 +1,6 @@
 package com.example.yumfilm.Dto;
 
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class FilmDetailDto {
-    int FilmId;
+    int filmId;
     String FilmName;
     String FilmImage;
     Date YearProduction;
@@ -23,10 +24,10 @@ public class FilmDetailDto {
     Date premiereDate;
     String directorName;
     String actorName;
-    String countryName;
     double rate;
-    String countryID;
+    String countryId;
     int age;
-    float price;
+    double price;
+    String videoTrailer;
 
 }

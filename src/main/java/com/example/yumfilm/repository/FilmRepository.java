@@ -2,6 +2,7 @@ package com.example.yumfilm.repository;
 
 import com.example.yumfilm.model.Film;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -44,5 +45,6 @@ public interface FilmRepository extends JpaRepository<Film, Integer> {
             "\t\t\t\tGROUP BY f.FilmName, f.Rate, f.FilmImage , fd.Description,f.FilmId, f.Age \n" +
             "\t\t\t\tORDER BY NEWID()\n", nativeQuery = true)
     List<Object[]> listAllFilm();
+
 
 }

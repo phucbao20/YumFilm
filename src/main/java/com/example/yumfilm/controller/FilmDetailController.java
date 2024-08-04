@@ -1,6 +1,7 @@
 package com.example.yumfilm.controller;
 
-import com.example.yumfilm.Dto.FilmDetailDto;
+import com.example.yumfilm.model.Film;
+import com.example.yumfilm.responses.FilmResponse;
 import com.example.yumfilm.service.FilmDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +16,10 @@ public class FilmDetailController {
     @Autowired
     FilmDetailService filmDetailService;
 
+
+
     @GetMapping("{filmID}")
-    public ResponseEntity<Object[]> getFilmDetails(@PathVariable int filmID) {
+    public ResponseEntity<FilmResponse> getFilmDetails(@PathVariable int filmID) {
         return ResponseEntity.ok(filmDetailService.findFilmDetailById(filmID));
     }
 
