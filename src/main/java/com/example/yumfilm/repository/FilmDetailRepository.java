@@ -82,8 +82,12 @@ public interface FilmDetailRepository extends JpaRepository<FilmDetail, Integer>
             "\t\t\t\tFilm.Age,\n" +
             "\t\t\t\tFilm.Price", nativeQuery = true)
     FilmResponse findFilmDetailById(@Param("filmId") int filmId);
-
-    @Query(value = "WITH FilmGenresAggregated AS (\n" +
+   
+  @Query(value = "SELECT COUNT(f) FROM Film f WHERE f.status = true")
+    public long getCountFilm();
+  
+  
+   @Query(value = "WITH FilmGenresAggregated AS (\n" +
             "\t\t        SELECT \n" +
             "\t\t            FILM.FilmId,\n" +
             "\t\t            STRING_AGG(FT.FilmTypeName, ', ') WITHIN GROUP (ORDER BY FT.FilmTypeName) AS FILMTYPES\n" +
@@ -151,4 +155,5 @@ public interface FilmDetailRepository extends JpaRepository<FilmDetail, Integer>
             "\t\t\t\tFilm.Age,\n" +
             "\t\t\t\tFilm.Price", nativeQuery = true)
     List<FilmResponse> getAllFilmDetailAdmin();
+  
 }

@@ -20,6 +20,6 @@ public class OrderFoodController {
 
     @GetMapping
     public ResponseEntity<List<Food>> getFood() {
-        return ResponseEntity.ok(foodService.findAll());
+        return ResponseEntity.ok(foodService.selectAll());
     }
 }

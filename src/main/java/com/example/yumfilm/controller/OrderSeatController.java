@@ -19,8 +19,7 @@ public class OrderSeatController {
     @Autowired
     SeatLocationService seatLocationService;
 
-    @Autowired
-    ShowTimeService showTimeService;
+
 
     @GetMapping
     public ResponseEntity<List<SeatLocationResponses>> getSeatLocations() {
@@ -35,13 +34,4 @@ public class OrderSeatController {
         return ResponseEntity.ok(seatResponses);
     }
 
-//    @GetMapping({"filmID"})
-//    public ResponseEntity<List<ShowTimeResponses>> getShowTime(@PathVariable int filmId) {
-//        List<ShowTimeResponses> showTimeResponse = showTimeService.getFilmShowTime(filmId)
-//                .stream()
-//                .map(showTime -> {
-//                    ShowTimeResponses showTimeResponses = new ShowTimeResponses();
-//                    showTimeResponses.setShowTimeID();
-//                }).toList()
-//    }
 }
