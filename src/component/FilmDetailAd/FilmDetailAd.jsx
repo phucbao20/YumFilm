@@ -5,6 +5,8 @@ import Tabs from 'react-bootstrap/Tabs';
 import { FaPlus } from "react-icons/fa";
 import { getAllFilmDetailAdmin } from '../../service/ADminFilmService'
 import { Link, useNavigate } from 'react-router-dom';
+import { Button, Card, CardBody, CardImg, CardText, CardTitle, Container } from 'react-bootstrap';
+import { selectAll } from '../../service/FoodService';
 
 const FilmDetail = () => {
     const [fimlDetailAdmin, setFilmDetailAdmin] = useState([]);
@@ -20,33 +22,42 @@ const FilmDetail = () => {
                 console.log(error)
             })
     }, [])
+    const [listFood, setListFood] = useState([])
+
+    useEffect(() => {
+        selectAll()
+            .then(resp => {
+                console.log(resp.data);
+                setListFood(resp.data)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, [])
+    console.log(listFood);
+
     const handleClick = (filmId) => {
         navigate(`/film/${filmId}`)
         // history.push(`/film/${filmId}`);
         // history.push(`/film`);
-
     };
 
     return (
         <body className='w-full h-full bg-slate-800'>
-
-            <nav className='w-full h-[100px] bg-black'>
-                dadasdasdas
-            </nav>
-            <hr className='HR-Month container' />
-
-
-            <section className='Film w-full h-full'>
+            <section className='Film w-full h-full pt-3'>
                 <div className=' container'>
                     <h1 className=' text-white'>Danh Sách Phim</h1>
                 </div>
                 <Tabs
-                    defaultActiveKey="profile"
+                    defaultActiveKey="home"
                     id="uncontrolled-tab-example"
                     className="container mb-2"
                 >
-                    <Tab eventKey="home" title="Phim            ">
-                    <Link to={"/film/create"} className='Button-Create'><FaPlus className='Plus'/>Thêm phim</Link>
+                    <Tab eventKey="home" title="Phim">
+                        <Link to={"/film/create"} className='Button-Create'>
+                            <FaPlus className='Plus' />
+                            Thêm phim
+                        </Link>
                         <div className='Film-Content container flex flex-wrap justify-between py-3 w-full h-full gap-y-8'>
                             {
                                 fimlDetailAdmin.map((film) =>
@@ -78,10 +89,35 @@ const FilmDetail = () => {
                             }
                         </div>
                     </Tab>
-                    <Tab eventKey="profile" title="Food">
-                        Tab content for Profile
+                    <Tab eventKey="profile" title="Món ăn">
+
+                        <Button className='float-end me-24' onClick={() => navigate(`/manager/food-detail`)}>Thêm đồ ăn</Button>
+                        <Container>
+
+                            <section className='flex flex-wrap gap-1'>
+                                {
+                                    listFood.map((value) =>
+                                        <Card style={{ width: '18rem' }}>
+                                            <div className='h-[15rem] w-full'>
+                                                <CardImg variant="top" className='h-full w-full object-cover'
+                                                 src={value.foodImage} 
+                                                />
+                                            </div>
+                                            <CardBody>
+                                                <CardTitle>{value.foodName}</CardTitle>
+                                                <CardText thousandSeparator={true}>
+                                                    {Math.ceil(value.price).toLocaleString() + " VND"}
+                                                </CardText>
+                                                <Button variant="primary" onClick={() => navigate(`/food-detail/${value.foodId}`)} >Sửa</Button>
+                                            </CardBody>
+                                        </Card>
+                                    )
+                                }
+
+                            </section>
+                        </Container>
                     </Tab>
-                    <Tab eventKey="contact" title="Seat">
+                    <Tab eventKey="contact" title="Ghế">
                         Tab content for Contact
                     </Tab>
                 </Tabs>

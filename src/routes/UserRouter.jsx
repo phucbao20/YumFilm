@@ -11,15 +11,17 @@ import PaymentStatus from '../components/Payment/PaymentStatus'
 const UserRouter = () => {
   return (
     <div>
-        <Routes>
-            <Route path='/' element={<Home />}></Route>
-            <Route path="/Login" element={<Login />}></Route>
-            <Route path="/Signup" element={<Signup />}></Route>
-            <Route path="/Conten/:filmId" element={<Conten />}></Route>
-            <Route path="/FilmDetail/:filmId" element={<FilmDetail />}></Route>
-            <Route path="/Conten/payment/:filmId" element={<Payment/>}></Route>
-            <Route path="/Conten/booking/payment-status" element={<PaymentStatus/>}></Route>
-        </Routes>
+      <Routes>
+        <Route path='/' element={<LayoutPage />}>
+          <Route index element={<Home />} />
+          <Route path='Login' element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/Conten/:filmId" element={<Conten />} />
+          <Route path="/FilmDetail/:filmId" element={<FilmDetail />} />
+          <Route path="/Conten/payment/:filmId" element={<Payment />} />
+          <Route path="/Conten/booking/payment-status" element={<PaymentStatus />} />
+        </Route>
+      </Routes>
     </div>
   )
 }

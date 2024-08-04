@@ -20,10 +20,10 @@ function MenuDashboard() {
                     <li><Link to='/dashboard'>
                         <span className='flex items-center'><MdOutlineSpaceDashboard className='me-3' /> Dashboard</span>
                     </Link></li>
-                    <li><Link to='/table'>
+                    <li><Link to='/dashboard/table'>
                         <span className='flex items-center'><FaTable className='me-3' /> Table</span>
                     </Link></li>
-                    <li><Link to='chart'>
+                    <li><Link to='/dashboard/chart'>
                         <span className='flex items-center'><FaChartBar className='me-3' /> Chart</span>
                     </Link></li>
                     {/* <li><Link to='/users'>

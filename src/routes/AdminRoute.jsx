@@ -7,6 +7,8 @@ import ChartsAdmin from '../component/AdmidDashboard/NavAdmin/Charts/ChartsAdmin
 
 const AdminRoutes = () => {
     return (
+        // <>
+        // </>
         <Routes>
             <Route path='/' element={<AdminDashboard />}>
                 {/* <Route index element={<Navigate to="/dashboard" />} /> */}
@@ -17,7 +19,6 @@ const AdminRoutes = () => {
                 <Route path='/logout' element="" ></Route>
                 <Route path='/profiles' element="" ></Route>
                 <Route path='/home' element="" ></Route>
-
             </Route>
         </Routes>
     )

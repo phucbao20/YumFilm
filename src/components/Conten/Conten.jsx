@@ -45,6 +45,8 @@ const Conten = () => {
             })
             .catch((error) => {
                 console.log(error)
+                if (error.response.data.status == 404)
+                    navigate("/Login")
             })
         getShowTime(filmId)
             .then((time) => {

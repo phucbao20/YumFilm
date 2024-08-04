@@ -47,18 +47,26 @@ const Login = () => {
         });
         console.log(formDataObj instanceof FormData);
         loginByUserName(formDataObj)
-            .then((resp) => {
-                // resp.data
-                console.log(resp);
-                
-                Cookies.set("YumFilm", resp.data.responseToken, {expires: 7})
-                notify("Đăng nhập thành công", "success")
-                navigate("/")
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
             })
-            .catch(error =>
-                console.log(error),
-                setError('Vui lòng kiểm tra thông tin đăng nhập !!')
-            )
+            .then((data) => {
+                console.log('Response Data:', data);
+                Cookies.set("YumFilm", data.responseToken, { expires: 7 })
+                notify("Đăng nhập thành công", "success");
+                setTimeout(() => {
+                    window.location.href = "http://localhost:5173/"
+                    // navigate("/");
+                }, 2000);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                setError('Vui lòng kiểm tra thông tin đăng nhập !!');
+            });
     }
     return (
         <div className=''>

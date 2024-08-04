@@ -29,7 +29,7 @@ const Payment = () => {
             })
             .catch((error) => {
                 console.log(error);
-
+                
             })
     }, [filmId])
     function handlePayment() {

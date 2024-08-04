@@ -8,12 +8,14 @@ import FilmDetailAdmin from '../component/FilmDetailAdmin/FilmDetailAdmin'
 const AdminFilmRouters = () => {
   return (
     <>
-    <Routes>
-        <Route path="/" element= {<FilmDetail/>}>
-        </Route>
-    <Route path="/film/:filmId" element= {<FilmDetailAdmin/>}></Route>
-    <Route path="/film/create" element= {<FilmDetailAdmin/>}></Route>
-
+      <Routes>
+      <Route path='/' element={<LayoutPage />}>
+        <Route index element={<FilmDetail />} />
+        <Route path='Login' element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/film/:filmId" element={<FilmDetailAdmin />} />
+        <Route path="/film/create" element={<FilmDetailAdmin />} />
+      </Route>
     </Routes>
     </>
   )
