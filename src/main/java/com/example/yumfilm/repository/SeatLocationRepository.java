@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SeatLocationRepository extends JpaRepository<SeatLocation, Integer> {
+    SeatLocation findByseatNumber(String seatNumber);
 }

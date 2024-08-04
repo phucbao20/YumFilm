@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/showTime")
+@RequestMapping("api/v1/booking/showTime")
 @CrossOrigin("*")
 public class ShowTimeController {
     @Autowired

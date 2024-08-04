@@ -23,8 +23,9 @@ public class FilmService {
     public List<Object[]> getAllListFill(){
         return filmRepository.listAllFilm();
         
-            public Film getFilmById(int filmId) {
-        return filmRepository.findByFilmId(filmId);
 
     }
+            public Film getFilmById(int filmId) {
+                return filmRepository.findByFilmId(filmId);
+            }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface FoodRepository extends JpaRepository<Food, Integer> {
 
+    Food findByfoodName(String foodName);
 
     @Query(value= "SELECT f.foodName, f.description, f.price, sum(odf.price) as total "
             + " FROM OrderFood odf "

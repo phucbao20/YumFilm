@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/seat")
+@RequestMapping("api/v1/booking/seat")
 @CrossOrigin("*")
 public class OrderSeatController {
     @Autowired

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/vi/filmDetail")
+@RequestMapping("api/v1/filmDetail")
 @CrossOrigin("*")
 public class FilmDetailController {
     @Autowired
