@@ -1,8 +1,54 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
 import Container from 'react-bootstrap/esm/Container'
 import { ngoidenkiquai, FAfood, optimusFood, Pepsi, baprangbo } from '../../image'
+import { listOrderSeat } from '../../applicationContext/Context'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { getFilmById } from '../../service/SeatLocation'
+import { payment } from '../../service/PaymentService'
 const Payment = () => {
+    const { state } = useLocation();
+    const { order, showTime, orderFood } = state;
+
+    // Sử dụng dữ liệu `order` ở đây
+    console.log(order);
+    console.log(showTime);
+    console.log(orderFood);
+
+    const { filmId } = useParams()
+    const [film, setFilm] = useState([])
+
+    const navigate = new useNavigate()
+
+    console.log(filmId);
+    useEffect(() => {
+        getFilmById(filmId)
+            .then((resp) => {
+                console.log(resp);
+                setFilm(resp.data)
+            })
+            .catch((error) => {
+                console.log(error);
+
+            })
+    }, [filmId])
+    function handlePayment() {
+        const listOrderFood = orderFood?.listOrderFood;
+        console.log(listOrderFood);
+
+        let invoice = {
+            "listOrderSeat": order.listOrderSeat,
+            "showTime": showTime,
+            "orderFood": orderFood.listOrderFood,
+            "totalMoney": Math.ceil(order.totalMoney + orderFood.total)
+        }
+        console.log(invoice);
+
+        payment(invoice).then((resp) => {
+            console.log(resp.data.url);
+            window.location.href = resp.data.url
+        })
+    }
     return (
         <div className=' bg-[#2b2b31]'>
             <Container>
@@ -32,8 +78,8 @@ const Payment = () => {
                             <Card className='my-3 p-3 !text-white border !bg-[#2b2b31]'>
                                 <Card.Title>Phương thức thanh toán</Card.Title>
                                 <Card.Body>
-                                    <div class="mb-4 flex align-items-center">
-                                        <input class="form-check-input me-3" type="radio"
+                                    <div className="mb-4 flex align-items-center">
+                                        <input className="form-check-input me-3" type="radio"
                                             name="payment" id="" />
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -170,11 +216,11 @@ const Payment = () => {
                                                 ></path>
                                             </g>
                                         </svg>
-                                        <label class="form-check-label ms-3" for="">Ví thanh
+                                        <label className="form-check-label ms-3" for="">Ví thanh
                                             toán VNPay</label>
                                     </div>
-                                    <div class="mb-4 flex align-items-center">
-                                        <input class="form-check-input me-3" type="radio"
+                                    <div className="mb-4 flex align-items-center">
+                                        <input className="form-check-input me-3" type="radio"
                                             name="payment" id="" />
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="60px"
@@ -204,11 +250,11 @@ const Payment = () => {
                                                 </g>
                                             </g>
                                         </svg>
-                                        <label class="form-check-label ms-3" for="">Ví thanh
+                                        <label className="form-check-label ms-3" for="">Ví thanh
                                             toán Momo</label>
                                     </div>
                                     <small id="helpId"
-                                        class=" mt-2">* Lưu
+                                        className=" mt-2">* Lưu
                                         ý: Chọn vào nút Thanh Toán bên cạnh để thanh toán nhé !!</small>
                                 </Card.Body>
                             </Card>
@@ -216,11 +262,11 @@ const Payment = () => {
                         <aside className='h-full w-[40%] bg-[#2b2b31] ps-3'>
                             <div className='h-[18rem] w-full flex'>
                                 <div className='h-[17rem] w-1/3'>
-                                    <img className='h-[270px] w-[200px]' src={ngoidenkiquai} />
+                                    <img className='h-[270px] w-[200px]' src={`/src/image/${film[0]?.filmImage}`} />
                                 </div>
                                 <div className='h-[17rem] w-2/3 px-3'>
                                     <div className='flex flex-col *:!text-[#ffff] '>
-                                        <span className=' text-base font-bold'>Ngôi đền kì quái 4</span>
+                                        <span className=' text-base font-bold'>{film[0]?.filmName}</span>
                                         <span className=' text-base font-normal'>2D Phụ Đề</span>
                                     </div>
                                 </div>
@@ -232,7 +278,7 @@ const Payment = () => {
                                 </div>
                                 <div className='w-full h-[2rem] *:!text-[#ffff] border-b-2 border-[#ff55a5]'>
                                     <span className=''>Suất:  </span>
-                                    <span className='font-bold text-base'>00.00 - 12.00</span>
+                                    <span className='font-bold text-base'>{showTime}</span>
                                     <span> - </span>
                                     <span>Ngày: </span>
                                     <span className='font-bold text-base'>02/07/2024</span>
@@ -242,29 +288,32 @@ const Payment = () => {
                                 <div className='h-full w-full  *:!text-[#ffff] flex'>
                                     <div className='h-full w-1/2'>
                                         <div className='h-[1.5rem] w-full flex'>
-                                            <span>1x Ghế đơn</span>
+                                            <span>{order.listOrderSeat.length}x Ghế đơn</span>
                                         </div>
                                         <div className='h-[1.5rem] w-full flex'>
                                             <span>Ghế: </span>
-                                            <span className='font-bold text-base'>A1,A2</span>
+                                            <span className='font-bold text-base'>{order.listOrderSeat.map((se) => se.seatName).join(", ")}</span>
                                         </div>
                                     </div>
                                     <div className='h-full w-1/2 justify-end flex items-center'>
-                                        <span className='font-bold text-base text-amber-500'>100.000 VNĐ</span>
+                                        <span className='font-bold text-base text-amber-500'>{Math.ceil(order.totalMoney).toLocaleString()} VNĐ</span>
                                     </div>
                                 </div>
                                 <div className='border-b-2 border-[#ff55a5] h-[20px] w-full'></div>
                             </div>
-                            <div className='h-[3rem] w-full mt-[2rem]'>
+                            <div className='min-h-[3rem] w-full mt-[2rem]'>
                                 <div className='h-full w-full  *:!text-[#ffff] flex'>
                                     <div className='h-full w-1/2 items-center'>
-                                        <div className='h-[1.5rem] w-full flex flex-col'>
-                                            <span>1x Combo FA</span>
-                                            <span>2x Combo Optimus</span>
+                                        <div className='min-h-[1.5rem] w-full flex flex-col'>
+                                            {
+                                                orderFood.listOrderFood.map((food) =>
+                                                    <span>{food.value}x {food.foodName}</span>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                     <div className='h-full w-1/2 justify-end flex items-center'>
-                                        <span className='font-bold text-base text-amber-500'>100.000 VNĐ</span>
+                                        <span className='font-bold text-base text-amber-500'>{Math.ceil(orderFood.total).toLocaleString()} VNĐ</span>
                                     </div>
                                 </div>
                                 <div className='border-b-2 border-[#ff55a5] h-[20px] w-full'></div>
@@ -277,19 +326,19 @@ const Payment = () => {
                                         </div>
                                     </div>
                                     <div className='h-full w-1/2 justify-end flex '>
-                                        <span className='font-bold text-base text-amber-500'>100.000 VNĐ</span>
+                                        <span className='font-bold text-base text-amber-500'>{Math.ceil(order.totalMoney + orderFood.total).toLocaleString()} VNĐ</span>
                                     </div>
                                 </div>
                             </div>
                             <div className='h-[5rem] w-full  flex justify-center '>
                                 <div className='Conten-btn h-full w-1/2 px-2'>
-                                    <Button variant="light">Quay lại</Button>{' '}
+                                    <Button variant="light" onClick={() => navigate(`/Conten/${filmId}`)}>Quay lại</Button>{' '}
                                 </div>
                                 <div className='Conten-btn h-full w-1/2 px-2'>
                                     <Button variant="warning"
-                                    // onClick={handlePayment} 
+                                        onClick={handlePayment}
                                     >
-                                        Tiếp tục</Button>{' '}
+                                        Thanh toán</Button>{' '}
                                 </div>
                             </div>
                         </aside>

@@ -36,9 +36,10 @@ const Home = () => {
         getListFilmHot()
         .then((filmHot)=> {
             setFilmHot(filmHot.data)
+            console.log(filmHot.data)
         })
         .catch((error) => {
-            console.log(erro);
+            console.log(error);
         })
         getListAllFilm()
         .then((allFilm) =>{
@@ -74,8 +75,8 @@ const Home = () => {
                     className="mySwiper"
                 >
                         {
-                            listFilmHot.map((img) =>
-                                <SwiperSlide>
+                            listFilmHot.map((img, index) =>
+                                <SwiperSlide key={index+1}>
                                     <img src={`/src/image/${img[1]}`} className='rounded' alt="" />
                                 </SwiperSlide>
                             )
@@ -90,8 +91,8 @@ const Home = () => {
                 </div>
                 <div className='Film-Content container flex flex-wrap justify-between py-3 w-full h-full gap-y-8'>
                     {
-                        listAllFilm.map((film) =>
-                            <div className='Content-Left flex justify-end w-1/2 h-1/4 p-4' key={film[0]}>
+                        listAllFilm.map((film, index) =>
+                            <div key={index+1} className='Content-Left flex justify-end w-1/2 h-1/4 p-4' key={film[0]}>
                                 <div className='Image-Left'>
                                     <img className='Image-Film rounded' src={`/src/image/${film[2]}`} alt="" />
                                 </div>

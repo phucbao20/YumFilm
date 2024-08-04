@@ -1,31 +1,34 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "./Conten.scss"
 import Button from 'react-bootstrap/Button';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getListSeat, getFilmById } from '../../service/SeatLocation'
 import { getListFood } from '../../service/Food';
 import { getShowTime } from '../../service/ShowTime';
+import { listOrderFood, listOrderSeat } from '../../applicationContext/Context';
+import Payment from '../Payment/Payment';
 const Conten = () => {
 
     const [listSeat, setListSeat] = useState([])
     const [listFood, setListFood] = useState([])
-    const [listShowTime, setListShowTime] = useState([])
+    const [listShowTime, setListShowTime] = useState([])//
     const [toOrderFood, setToOrderFood] = useState(false)
-    const [orderFood, setOrderFood] = useState({
+    const [orderFood, setOrderFood] = useState({//
         listOrderFood: [],
         total: 0
 
     })
 
-    const [order, setOrder] = useState({
+    const [order, setOrder] = useState({// 
         listOrderSeat: [],
-        listOrderFood: [],
+        // listOrderFood: [],
         totalMoney: 0
     })
 
     const [showTime, setShowtime] = useState();
     const [film, setFilm] = useState()
-    const { filmId } = useParams();
+    const { filmId } = useParams();//
+    const navigate = new useNavigate()
 
     useEffect(() => {
         getListSeat()
@@ -76,16 +79,16 @@ const Conten = () => {
 
         )
     }
-
-
     const handleToFoodBooking = () => {
         if (order.listOrderSeat.length > 0) {
-            setToOrderFood(true)
+          setToOrderFood(true);
+          if (toOrderFood) {
+            navigate(`/Conten/payment/${filmId}`, { state: { order, showTime, orderFood} });
+          }
+        } else {
+          alert("Bạn chưa chọn ghế");
         }
-        else {
-            alert("Bạn chưa chọn ghế")
-        }
-    }
+      };
 
     const handleToSeatBooking = () => {
         setToOrderFood(false)
@@ -98,7 +101,7 @@ const Conten = () => {
     const updateQuantity = (foodId, foodName, price, value) => {
         // let inpQuantity =  document.getElementById(`quantity_${foodId}`)
         // inpQuantity.value = inpQuantity.value*1 + value; 
-        
+
         let newOrderFood = []
         if (!orderFood.listOrderFood.find((food) => food.foodName === foodName)) {
             newOrderFood = [
@@ -186,7 +189,6 @@ const Conten = () => {
                             >
                                 {
                                     listShowTime.map(time =>
-
                                         <button className="btn" key={time[0]} onClick={() => handleShowTime(time[2])}>{time[2]}</button>
 
                                     )
@@ -226,8 +228,8 @@ const Conten = () => {
                     </> : <div className='h-full mt-[0.75rem] py-3 px-4 flex flex-col'>
                         <label className='font-semibold text-[#fff] text-lg'>Chọn combo</label>
                         {
-                            listFood.map((food) =>
-                                <div className='h-1/6 w-full mt-3 flex'>
+                            listFood.map((food, index) =>
+                                <div className='h-1/6 w-full mt-3 flex' key={index}>
                                     <div className='h-full w-1/2  items-center flex'>
                                         <img className='h-[100px] w-[150px]' src={`/src/image/${food.foodImage}`} />
                                         <div className='flex flex-col *:!ml-2 *:!text-[#fff]'>
@@ -238,13 +240,13 @@ const Conten = () => {
                                     </div>
                                     <div className='h-full w-1/2 flex justify-end items-center'>
                                         <div>
-                                            <label for="Quantity" class="sr-only"> Quantity </label>
+                                            <label for="Quantity" className="sr-only"> Quantity </label>
 
-                                            <div class="flex items-center gap-1" key={food.foodId}>
+                                            <div className="flex items-center gap-1" key={food.foodId}>
                                                 <button
                                                     type="button"
-                                                    class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                                    onClick={() => updateQuantity(food.foodId,food.foodName, food.price, -1)}
+                                                    className="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+                                                    onClick={() => updateQuantity(food.foodId, food.foodName, food.price, -1)}
                                                 >
                                                     -
                                                 </button>
@@ -253,13 +255,13 @@ const Conten = () => {
                                                     type="number"
                                                     id={`quantity_${food.foodId}`}
                                                     value={orderFood.listOrderFood.find((f) => f.foodName === food.foodName)?.value | 0}
-                                                    class="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                                                    className="h-10 w-16 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                                                 />
 
                                                 <button
                                                     type="button"
-                                                    class="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
-                                                    onClick={() => updateQuantity(food.foodId,food.foodName, food.price, +1)}
+                                                    className="size-10 leading-10 text-gray-600 transition hover:opacity-75 dark:text-gray-300"
+                                                    onClick={() => updateQuantity(food.foodId, food.foodName, food.price, +1)}
                                                 >
                                                     +
                                                 </button>
@@ -325,17 +327,15 @@ const Conten = () => {
                 }
                 {
                     orderFood.listOrderFood.length &&
-                    <div className='h-[5rem] w-full mt-[2rem]'>
+                    <div className='min-h-[6rem] w-full mt-[2rem]'>
                         <div className='h-full w-full  *:!text-[#ffff] flex'>
                             <div className='h-full w-1/2 items-center'>
-                                <div className='h-[2.5rem] w-full flex flex-col'>
+                                <div className='min-h-[2.5rem] w-full flex flex-col'>
                                     {
                                         orderFood.listOrderFood.map((food) =>
                                             <span>{food.value}x {food.foodName}</span>
                                         )
                                     }
-
-
                                 </div>
                             </div>
                             <div className='h-full w-1/2 justify-end flex items-center'>

@@ -1,19 +1,21 @@
 import React
-// , { useState } 
+, { useState } 
 from 'react'
 import { Link } from 'react-router-dom'
+import { createUser } from '../../service/UserService'
 // import { createAccount } from '../service/RegisterService'
-// import Swal from 'sweetalert2'
-// import { useNavigate } from 'react-router'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router'
 
 const Signup = () => {
-    // const [lastName, setLastName] = useState("")
-    // const [firstName, setFirstName] = useState("")
-    // const [username, setUsername] = useState("")
-    // const [email, setEmail] = useState("")
-    // const [password, setPassword] = useState({})
-    // const [gender, setGender] = useState("")
-    // const navigate = useNavigate()
+    const [lastName, setLastName] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState({})
+    const [gender, setGender] = useState("")
+    const [showPasswordError, setShowPasswordError] = useState(false)
+    const navigate = useNavigate()
 
     function showPassword() {
         const showPassword = document.getElementsByClassName('inputPassword')
@@ -23,33 +25,36 @@ const Signup = () => {
             :
             showPassword.setAttribute('type', 'password')
     }
-    // function handleOnSubmit() {
-    //     if (password.pass === password.confirmPassword) {
-    //         const account = {
-    //             lastName,
-    //             firstName,
-    //             username,
-    //             email,
-    //             password: password.confirmPassword,
-    //             gender
-    //         }
-    //         createAccount(account).then((resp) =>{
-    //             console.log(resp);
-    //             const success = Swal.fire({
-    //                 title: "Đăng ký thành công",
-    //                 icon: "success"
-    //               });
-    //               if(success){
-    //                   navigate("/login")
-    //               }
-    //         }).catch(error =>{
-    //             console.error(error);
-    //         })
-    //     }
-    //     else{
-    //         console.log(1);
-    //     }
-    // }
+    function handleOnSubmit() {
+        console.log(lastName);
+        console.log(firstName);
+        console.log(username);
+        console.log(password);
+        if (password.pass === password.confirmPassword) {
+            const user = {
+                "lastName": lastName,
+                "firstName": firstName,
+                "username": username,
+                "password": password.confirmPassword,
+            }
+            
+            createUser(user).then((resp) =>{
+                console.log(resp);
+                const success = Swal.fire({
+                    title: "Đăng ký thành công",
+                    icon: "success"
+                  });
+                  if(success){
+                      navigate("/login")
+                  }
+            }).catch(error =>{
+                console.error(error);
+            })
+        }
+        else{
+            setShowPasswordError(true)
+        }
+    }
     return (
         <div>
             <div className="setBackground mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -69,7 +74,7 @@ const Signup = () => {
                                 <label htmlFor="lastname" className="sr-only">Họ</label>
                                 <div className="relative">
                                     <input
-                                        // onChange={(e) => setLastName(e.target.value)}
+                                        onChange={(e) => setLastName(e.target.value)}
                                         type="text"
                                         className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                         placeholder="Họ"
@@ -81,7 +86,7 @@ const Signup = () => {
                                 <label htmlFor="firstname" className="sr-only">Tên</label>
                                 <div className="relative">
                                     <input
-                                        // onChange={(e) => setFirstName(e.target.value)}
+                                        onChange={(e) => setFirstName(e.target.value)}
                                         type="text"
                                         className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                         placeholder="Tên"
@@ -94,7 +99,7 @@ const Signup = () => {
                             <label htmlFor="username" className="sr-only">Tên đăng nhập</label>
                             <div className="relative">
                                 <input
-                                    // onChange={(e) => setUsername(e.target.value)}
+                                    onChange={(e) => setUsername(e.target.value)}
                                     type="text"
                                     className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                     placeholder="Tên đăng nhập"
@@ -106,7 +111,7 @@ const Signup = () => {
                             <label htmlFor="password" className="sr-only">Mật khẩu</label>
                             <div className="relative">
                                 <input
-                                    // onChange={(e) => setPassword({ ...password, pass: e.target.value })}
+                                    onChange={(e) => setPassword({ ...password, pass: e.target.value })}
                                     type="password"
                                     className="inputPassword w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                     placeholder="Mật khẩu"
@@ -137,7 +142,7 @@ const Signup = () => {
                             <label htmlFor="confirmPassword" className="sr-only">Xác nhận mật khẩu</label>
                             <div className="relative">
                                 <input
-                                    // onChange={(e) => setPassword({ ...password, confirmPassword: e.target.value })}
+                                    onChange={(e) => setPassword({ ...password, confirmPassword: e.target.value })}
                                     type="password"
                                     className="inputPassword w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                     placeholder="Xác nhận mật khẩu"
@@ -164,9 +169,10 @@ const Signup = () => {
                                 </span>
                             </div>
                         </div>
+                        <p className='text-red-600' hidden={!showPasswordError}>Mật khẩu không khớp</p>
                         <button
-                            // onClick={handleOnSubmit}
-                            type="submit"
+                            onClick={handleOnSubmit}
+                            type="button"
                             className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white" >
                             Đăng ký
                         </button>

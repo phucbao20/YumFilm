@@ -1,17 +1,17 @@
 import React
-    // , { useState } 
+, { useState }
     from 'react'
-    import { Link } from 'react-router-dom'
-// import { useNavigate } from 'react-router'
-// import Swal from 'sweetalert2'
-// import { Link } from 'react-router-dom';
-// import {selectByUsername} from '../service/LoginService';
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
+import Swal from 'sweetalert2'
+import { loginByUserName } from '../../service/LoginService'
+import Cookies from 'js-cookie';
 
 const Login = () => {
-    // const [username, setUsername] = useState('')
-    // const [password, setPassword] = useState('')
-    // const [error, setError] = useState('')
-    // const navigate = new useNavigate()
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+    const navigate = new useNavigate()
 
     function showPassword() {
         const showPassword = document.getElementById('inputPassword')
@@ -22,43 +22,44 @@ const Login = () => {
             showPassword.setAttribute('type', 'password')
     }
 
-    // function notify(message, status) {
-    //     return Swal.fire({
-    //         title: message,
-    //         icon: status
-    //     });
+    function notify(message, status) {
+        return Swal.fire({
+            title: message,
+            icon: status
+        });
+    }
 
-    // }
+    function handleOnSubmit(e) {
+        e.preventDefault()
+        const account =
+        {
+            username: username,
+            password: password
+        }
+        console.table(account);
+        const formDataObj = new FormData();
 
-    // function handleOnSubmit(e) {
-    //     e.preventDefault()
-    //     const account =
-    //     {
-    //         username: username,
-    //         password: password
-    //     }
-    //     console.table(account);
-    //     const formDataObj = new FormData();
-
-    //     formDataObj.append("username", account.username)
-    //     formDataObj.append("password", account.password)
-    //     console.log(formDataObj);
-    //     formDataObj.forEach(element => {
-    //         console.log(element);
-    //     });
-    //     console.log(formDataObj instanceof FormData);
-    //     selectByUsername(formDataObj)
-    //     .then((resp) => {
-    //         // resp.data
-    //         console.log(resp);
-    //             notify("Đăng nhập thành công", "success")
-    //             // navigate("/")
-    //     })
-    //     .catch(error => 
-    //         console.log(error),
-    //         setError('Vui lòng kiểm tra thông tin đăng nhập !!')
-    //     )
-    // }
+        formDataObj.append("username", account.username)
+        formDataObj.append("password", account.password)
+        console.log(formDataObj);
+        formDataObj.forEach(element => {
+            console.log(element);
+        });
+        console.log(formDataObj instanceof FormData);
+        loginByUserName(formDataObj)
+            .then((resp) => {
+                // resp.data
+                console.log(resp);
+                
+                Cookies.set("YumFilm", resp.data.responseToken, {expires: 7})
+                notify("Đăng nhập thành công", "success")
+                navigate("/")
+            })
+            .catch(error =>
+                console.log(error),
+                setError('Vui lòng kiểm tra thông tin đăng nhập !!')
+            )
+    }
     return (
         <div className=''>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -79,7 +80,7 @@ const Login = () => {
                             <div className="relative">
                                 <input
                                     type="text"
-                                    // onChange={(e) => {setUsername(e.target.value)}}
+                                    onChange={(e) => { setUsername(e.target.value) }}
                                     className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                     placeholder="Tên đăng nhập"
                                 />
@@ -91,7 +92,7 @@ const Login = () => {
 
                             <div className="relative">
                                 <input
-                                    // onChange={(e) => setPassword(e.target.value)}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     type="password"
                                     className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                     placeholder="Mật khẩu"
@@ -122,11 +123,11 @@ const Login = () => {
                                 </span>
                             </div>
                         </div>
-                        {/* <div className='text-danger'>
+                        <div className='text-danger'>
                             {error}
-                        </div> */}
+                        </div>
                         <button
-                            // onClick={handleOnSubmit}
+                            onClick={handleOnSubmit}
                             type="submit"
                             className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white" >
                             Đăng nhập
@@ -135,9 +136,9 @@ const Login = () => {
                         <p className="text-center text-sm text-gray-500">
                             Bạn không có tài khoản ?
                             <Link to="/Signup">SingUp</Link>
-                               
-                        
-                            {/* <a className="underline" href="#"></a> */}
+
+
+                            <a className="underline" href="#"></a>
                         </p>
                     </form>
                 </div>
