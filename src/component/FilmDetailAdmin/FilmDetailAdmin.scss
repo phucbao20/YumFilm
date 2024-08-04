@@ -1,0 +1,43 @@
+.FilmAdmin{
+    .FilmAdmin-Left{
+        .Image-Film{
+            height: 550px;
+            width: 400px;
+            border-radius: 20px;
+        }
+        .Button-Content{
+            color: white;
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: rgba(235, 7, 98, 0.958);
+        }
+    }
+
+    .FilmAdmin-Right{
+        .Content{
+            .Content-Right{
+                .Input-Content{
+                    .Input{
+                        width: 300px;
+                        height: 40px;
+                        border-radius: 10px;
+                    }
+                    .TextArea-Form{
+                        width: 300px;
+                        height: 120px;
+                        border-radius: 10px;
+                    }
+                }
+            }
+        }
+        .Button{
+            .Button-Content{
+                width: 100px;
+                height: 35px;
+                border-radius: 10px;
+                background-color: rgba(235, 7, 98, 0.958);
+            }
+        }
+    }
+}
