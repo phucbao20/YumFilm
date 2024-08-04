@@ -1,6 +1,14 @@
 body{
     .Film{
+        .Button-Create{
+            background-color: rgba(235, 7, 98, 0.958);
+            float: right;
+            margin-right: 100px;
+            width: 150px;
+            border-radius: 10px;
+        }
         &-Content{
+
             .Content-Left{
                 .Image-Left{
                     .Image-Film{
