@@ -19,7 +19,7 @@ const Footer = () => {
           </div>
         </div>
         <div className='h-[2.5rem] w-full flex justify-center'>
-          <sapn className='text-[gray]  font-normal text-lg'>Đăng ký để nhận bản tin của chúng tôi</sapn>
+          <span className='text-[gray]  font-normal text-lg'>Đăng ký để nhận bản tin của chúng tôi</span>
         </div>
         <div className='h-[5.5rem] w-full flex justify-center'>
           <div className='h-full w-2/4 flex justify-end px-[1rem]'>

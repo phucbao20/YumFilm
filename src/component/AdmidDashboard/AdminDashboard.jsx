@@ -5,6 +5,7 @@ import FooterAdminDashboard from './FooterAdmin/FooterAdminDashboard'
 
 import MenuDashboard from './MenuAdmin/MenuDashboard'
 import { Outlet } from 'react-router-dom'
+import Dashboard from './NavAdmin/Dashboard/Dashboard'
 
 function AdminDashboard() {
   return (
