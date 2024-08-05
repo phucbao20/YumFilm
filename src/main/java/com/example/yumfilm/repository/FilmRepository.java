@@ -25,16 +25,13 @@ public interface FilmRepository extends JpaRepository<Film, Integer> {
     @Query(value = "Select f from Film f where f.filmId = :id")
     List<Film> findFilmByFilmId(@Param("id") int id);
 
-    @Query(value = "SELECT TOP(:quantity) f.FilmName, f.FilmImage, STRING_AGG(ft.FilmTypeName, ', ') WITHIN GROUP (ORDER BY ft.FilmTypeName) AS FILMTYPES, f.Rate "
-            + "FROM Film f \r\n"
-            + "	JOIN \r\n" + "		FilmGenres fg ON f.FilmId = fg.FilmId\r\n" + "	JOIN \r\n"
-            + "		FilmType ft ON fg.FilmTypeId = ft.FilmTypeId\r\n"
-            + "	WHERE MONTH(f.PremiereDate) = MONTH(GETDATE()) and YEAR(f.PremiereDate) = YEAR(GETDATE()) \r\n"
-            + "	GROUP BY f.FilmName, f.Rate, f.FilmImage\r\n" + "	ORDER BY NEWID()", nativeQuery = true)
+    @Query(value = "\n" +
+            "SELECT *\n" +
+            "FROM Film\n" +
+            "WHERE MONTH(PremiereDate) = (:quantity);", nativeQuery = true)
     List<Object[]> findFilmsHotInMonth(@Param("quantity") int quantity);
-
     default List<Object[]> findFilmsHotInMonth() {
-        return findFilmsHotInMonth(4);
+        return findFilmsHotInMonth(7);
     }
 
     @Query(value = "SELECT f.FilmId ,f.FilmName, f.FilmImage, STRING_AGG(ft.FilmTypeName, ', ') WITHIN GROUP (ORDER BY ft.FilmTypeName) AS FILMTYPES, f.Rate , fd.Description, f.Age \n" +

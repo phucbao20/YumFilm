@@ -12,12 +12,12 @@ public interface FilmResponse {
     String getFilmName();
     String getFilmImage();
     Date getYearProduction();
-    String getFilmType();
+    String getFilmTypes();
     String getDescription();
     String getFilmTime();
     Date getPremiereDate();
     String getDirectorName();
-    String getActorName();
+    String getActors();
     String getCountryName();
     double getRate();
     String getCountryId();

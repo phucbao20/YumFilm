@@ -41,7 +41,7 @@ public interface FilmDetailRepository extends JpaRepository<FilmDetail, Integer>
             "\t\t        FILM.FilmName,\n" +
             "\t\t        FILM.FilmImage,\n" +
             "\t\t\t\tFilmDetail.ProductionDate AS YearProduction,\n" +
-            "\t\t        FGA.FILMTYPES,\n" +
+            "\t\t        FGA.FilmTypes,\n" +
             "\t\t        FilmDetail.Description,\n" +
             "\t\t        Film.FilmTime,\n" +
             "\t\t        Film.PremiereDate,\n" +
@@ -74,7 +74,7 @@ public interface FilmDetailRepository extends JpaRepository<FilmDetail, Integer>
             "\t\t        FilmDetail.Description,\n" +
             "\t\t        Film.FilmTime,\n" +
             "\t\t        Director.DirectorName,\n" +
-            "\t\t        FAA.ACTORS,\n" +
+            "\t\t        FAA.Actors,\n" +
             "\t\t        FilmDetail.ProductionDate,\n" +
             "\t\t\t\tCountry.CountryName, \n" +
             "\t\t\t\tFilm.Rate,\n" +

@@ -25,6 +25,7 @@ public class FilmDetailAdminController {
 
     @GetMapping("/{filmId}")
     public ResponseEntity<FilmResponse> getByIdAdmin(@PathVariable int filmId){
+        System.out.println();
         return ResponseEntity.ok(filmDetailService.findFilmDetailById(filmId));
     }
 

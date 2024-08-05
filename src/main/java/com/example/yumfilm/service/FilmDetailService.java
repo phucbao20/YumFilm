@@ -50,8 +50,6 @@ public class FilmDetailService {
         actorRepository.save(actor);
         directorRepository.save(director);
         filmTypeRepository.save(filmType);
-
-
         return film;
     }
 
